@@ -18,7 +18,7 @@ async function getUsers(req, res) {
     }
 };
 
-//Editar Usuario
+//Observar por Usuario
 async function getUser(req, res) {
     try {
         try {

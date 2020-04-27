@@ -1,11 +1,30 @@
 const Client = require('../models/Client');
 async function getClients(req, res) {
     try {
-        const clients = await Client.findAll({
-        });
+        try {
+            var data = await Client.findAll();
+            res.status(200).send(data);
+        }catch (e){
+            handleError(e, res);
+        }
+    } catch (error) {
+        console.log(error);
         res.json({
-            data: clients
-        })
+            data: {},
+            message: 'Ah ocurrido un error interno'
+        });
+    }
+};
+
+//Observar por Cliente
+async function getClient(req, res) {
+    try {
+        try {
+            var data = await Client.findByPk(req.params.id);
+            res.status(200).send(data);
+        }catch (e){
+            handleError(e, res);
+        }
     } catch (error) {
         console.log(error);
         res.json({
@@ -83,4 +102,4 @@ async function deleteClients(req, res){
 };
 
 
-module.exports = {getClients, addClients, updateClients, deleteClients};
+module.exports = {getClients, getClient, addClients, updateClients, deleteClients};
