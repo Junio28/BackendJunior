@@ -1,11 +1,30 @@
 const Product = require('../models/Product');
 async function getProducts(req, res) {
     try {
-        const products = await Product.findAll({
-        });
+        try {
+            var data = await Product.findAll();
+            res.status(200).send(data);
+        }catch (e){
+            handleError(e, res);
+        }
+    } catch (error) {
+        console.log(error);
         res.json({
-            data: products
-        })
+            data: {},
+            message: 'Ah ocurrido un error interno'
+        });
+    }
+};
+
+//Observar por Producto
+async function getProduct(req, res) {
+    try {
+        try {
+            var data = await Product.findByPk(req.params.id);
+            res.status(200).send(data);
+        }catch (e){
+            handleError(e, res);
+        }
     } catch (error) {
         console.log(error);
         res.json({
@@ -82,4 +101,4 @@ async function deleteProducts(req, res){
     }
 };
 
-module.exports = {getProducts, addProducts, updateProducts, deleteProducts};
+module.exports = {getProducts, getProduct, addProducts, updateProducts, deleteProducts};
