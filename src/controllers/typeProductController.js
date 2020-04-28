@@ -1,11 +1,30 @@
 const TypeProduct = require('../models/TypeProduct');
 async function getTypeProducts(req, res) {
     try {
-        const typeProducts = await TypeProduct.findAll({
-        });
+        try {
+            var data = await TypeProduct.findAll();
+            res.status(200).send(data);
+        }catch (e){
+            handleError(e, res);
+        }
+    } catch (error) {
+        console.log(error);
         res.json({
-            data: typeProducts
-        })
+            data: {},
+            message: 'Ah ocurrido un error interno'
+        });
+    }
+};
+
+//Observar por Tipo Producto
+async function getTypeProduct(req, res) {
+    try {
+        try {
+            var data = await TypeProduct.findByPk(req.params.id);
+            res.status(200).send(data);
+        }catch (e){
+            handleError(e, res);
+        }
     } catch (error) {
         console.log(error);
         res.json({
@@ -81,4 +100,4 @@ async function deleteTypeProducts(req, res){
 
 
 
-module.exports = {getTypeProducts, addTypeProducts, updateTypeProducts, deleteTypeProducts};
+module.exports = {getTypeProducts, getTypeProduct, addTypeProducts, updateTypeProducts, deleteTypeProducts};
