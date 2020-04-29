@@ -45,21 +45,21 @@ const Sale = sequelize.define('sale', {
   },
   created: {
     type: Sequelize.FLOAT,
-    allowNull: false,
-    validate: {
-      isFloat: true, // comprueba números de coma flotante válidos
-      notEmpty: true, // que no este vacio
-      //len: [2, 70] // definir un minimo y un maximo
-    }
+    allowNull: false
+    // validate: {
+    //   isFloat: true, // comprueba números de coma flotante válidos
+    //   notEmpty: true, // que no este vacio
+    //   //len: [2, 70] // definir un minimo y un maximo
+    // }
   },
   updated: {
     type: Sequelize.FLOAT,
-    allowNull: false,
-    validate: {
-      isFloat: true, // comprueba números de coma flotante válidos
-      notEmpty: true, // que no este vacio
-      //len: [2, 70] // definir un minimo y un maximo
-    }
+    allowNull: false
+    // validate: {
+    //   isFloat: true, // comprueba números de coma flotante válidos
+    //   notEmpty: true, // que no este vacio
+    //   //len: [2, 70] // definir un minimo y un maximo
+    // }
   }
 }, {
   timestamps: false,

@@ -1,11 +1,30 @@
 const Sale = require('../models/Sale');
 async function getSales(req, res) {
     try {
-        const sales = await Sale.findAll({
-        });
+        try {
+            var data = await Sale.findAll();
+            res.status(200).send(data);
+        }catch (e){
+            handleError(e, res);
+        }
+    } catch (error) {
+        console.log(error);
         res.json({
-            data: sales
-        })
+            data: {},
+            message: 'Ah ocurrido un error interno'
+        });
+    }
+};
+
+//Observar por Venta
+async function getSale(req, res) {
+    try {
+        try {
+            var data = await Sale.findByPk(req.params.id);
+            res.status(200).send(data);
+        }catch (e){
+            handleError(e, res);
+        }
     } catch (error) {
         console.log(error);
         res.json({
@@ -86,4 +105,4 @@ async function deleteSales(req, res){
 };
 
 
-module.exports = {getSales, addSales, updateSales, deleteSales};
+module.exports = {getSales, getSale, addSales, updateSales, deleteSales};
